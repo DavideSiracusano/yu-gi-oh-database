@@ -1,9 +1,14 @@
 import React from "react";
 
-function CardImage({ placeholder, image, alt }) {
+function CardImage({ placeholder, src, alt, className }) {
   return (
     <div>
-      <img src={image} alt={alt} onError={placeholder} />
+      <img
+        src={src}
+        alt={alt}
+        placeholder={placeholder}
+        className={className}
+      />
     </div>
   );
 }

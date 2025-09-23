@@ -1,4 +1,4 @@
-import Home from "./home/Home";
+import Home from "./home/page";
 
 export function generateMetadata() {
   return {
@@ -8,5 +8,9 @@ export function generateMetadata() {
 }
 
 export default function Page() {
-  return <Home />;
+  return (
+    <>
+      <Home />
+    </>
+  );
 }

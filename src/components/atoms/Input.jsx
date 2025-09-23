@@ -1,12 +1,13 @@
 import React from "react";
 
-function Input({ children, className, type, onClick, placeholder }) {
+function Input({ children, value, className, type, onChange, placeholder }) {
   return (
     <div>
       <input
         className={className}
+        value={value}
         type={type}
-        onClick={onClick}
+        onChange={onChange}
         placeholder={placeholder}
       >
         {children}
