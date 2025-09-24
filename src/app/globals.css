@@ -1,6 +1,27 @@
 @import "tailwindcss";
 
+/* Tema chiaro di default */
 body {
-  margin: 0;
-  border: 0;
+  background: white;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Tema scuro */
+.dark body {
+  background: black;
+  color: white;
+}
+
+.dark li {
+  background: gray;
+  color: white;
+}
+
+.dark .link-home,
+.dark .link-decklist,
+.dark .link-banlist,
+.dark .link-about {
+  background: transparent;
+  color: white;
 }

@@ -69,7 +69,7 @@ function AllCards() {
           {currentCards.map((card) => (
             <li
               key={card.id}
-              className="cards bg-gray-100 p-5 rounded shadow flex flex-col items-center
+              className=" bg-gray-100 p-5 rounded shadow flex flex-col items-center
                 hover:cursor-pointer hover:scale-105 transition-transform duration-200 ease-in-out"
             >
               <p>{card.name}</p>
