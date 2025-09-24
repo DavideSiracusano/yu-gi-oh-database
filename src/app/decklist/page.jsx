@@ -63,12 +63,11 @@ function Decklist() {
     title, // inserisce titolo dinamicamente tramite prop
     cards,
     maxCards,
-    color, // inserisce colore dinamicamente tramite prop
     onRemove,
     emptyMessage = "Vuoto",
   }) => (
     <div className="w-full max-w-6xl">
-      <h3 className={`text-xl font-semibold mt-6 mb-4 text-center ${color}`}>
+      <h3 className={`rainbow-text  font-semibold mt-6 mb-4 text-center`}>
         {title} ({cards.length}/{maxCards})
       </h3>
       {cards.length === 0 ? (
@@ -130,7 +129,6 @@ function Decklist() {
         title="Main Deck"
         cards={deck}
         maxCards={60}
-        color="text-orange-500"
         onRemove={handleRemoveCard}
         emptyMessage="Il tuo deck principale è vuoto"
       />
@@ -141,7 +139,6 @@ function Decklist() {
         title="Side Deck"
         cards={side}
         maxCards={15}
-        color="text-yellow-500"
         onRemove={handleRemoveSide}
       />
 
@@ -151,7 +148,6 @@ function Decklist() {
         title="Extra Deck"
         cards={extra}
         maxCards={15}
-        color="text-violet-400"
         onRemove={handleRemoveExtra}
       />
     </div>
