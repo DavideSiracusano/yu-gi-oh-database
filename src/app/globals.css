@@ -9,7 +9,7 @@ body {
 
 /* Tema scuro */
 .dark body {
-  background: black;
+  background: rgba(0, 0, 0, 0.854);
   color: white;
 }
 

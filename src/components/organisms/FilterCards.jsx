@@ -1,74 +1,87 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Input from "../atoms/Input";
 import CardImage from "../atoms/CardImage";
-import API_URL from "@/ApiKey";
+import Button from "../atoms/Button";
+import CardTooltip from "./CardTooltip";
 
-function FilterCards() {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!query) {
-      setResults([]); // se la query è vuota, non mostrare nulla
-      return;
-    }
-
-    setLoading(true);
-
-    fetch(`${API_URL}?fname=${query}`) // cerca solo per nome
-      .then((response) => response.json())
-      .then((data) => {
-        setResults(data.data || []); // si prende l'array data dentro all'oggetto
-        setLoading(false); // disattiva caricamento
-      })
-      .catch((err) => console.log(err));
-  }, [query]);
+function FilterCards({
+  query,
+  setQuery,
+  cards,
+  onAddDeck,
+  onAddSide,
+  onAddExtra,
+}) {
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
     <div>
-      <input
-        type="text"
+      {/* 🔍 Input ricerca */}
+      <Input
         value={query}
-        placeholder="Cerca una carta..."
         onChange={(e) => setQuery(e.target.value)}
-        className="border p-2 rounded mb-4 w-full"
+        placeholder="Cerca una carta..."
+        className="w-full mt-2 p-2 border rounded mb-4 border-blue-900 text-blue-700 text-center"
       />
 
-      {loading && <p>Caricamento...</p>}
-
-      {results.length > 0 && (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {results.map((card) => (
-            <li
-              className="
-            cards bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] 
-            rounded-lg shadow-md border border-[#b6c6e0] 
-            text-center w-[200px] p-4 gap-2 
-            flex flex-col items-center 
-            hover:cursor-pointer hover:scale-110 transition-transform duration-400 ease-in-out"
+      {/* 🃏 Risultati */}
+      {cards.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+          {cards.map((card) => (
+            <div
               key={card.id}
+              className="border p-2 rounded shadow flex flex-col items-center relative"
+              onMouseEnter={() => setHoveredCard(card)}
+              onMouseLeave={() => setHoveredCard(null)}
             >
-              {card.name}
-              {
-                <CardImage
-                  image={card.card_images[0].image_url}
-                  alt={card.name}
-                  className="w-[170px] h-auto object-cover mb-2"
-                />
-              }
-              <p className="text-green-600 font-bold mt-2">Cardmarket price:</p>
-              <div className="price">
-                {`$${card.card_prices[0].cardmarket_price}`}
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+              <p className="font-bold">{card.name}</p>
 
-      {query && results.length === 0 && !loading && (
-        <p>Nessuna carta trovata per "{query}"</p>
+              {card.card_images?.[0] && (
+                <div className="relative">
+                  <CardImage
+                    src={card.card_images[0].image_url}
+                    alt={card.name}
+                    className="w-[120px] h-auto mt-2 mb-2 hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer"
+                  />
+
+                  {/* Tooltip posizionato accanto all'immagine */}
+                  {hoveredCard?.id === card.id && (
+                    <div className="absolute inset-0 flex items-center justify-center z-50  ">
+                      <CardTooltip
+                        card={card}
+                        isVisible={true}
+                        setHoveredCard={setHoveredCard}
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="flex gap-2 flex-wrap justify-center">
+                <Button
+                  className="hover:text-red-500 text-xs px-2 py-1"
+                  onClick={() => onAddDeck(card)}
+                >
+                  Deck
+                </Button>
+                <Button
+                  className="hover:text-gray-500 text-xs px-2 py-1"
+                  onClick={() => onAddSide(card)}
+                >
+                  Side
+                </Button>
+                <Button
+                  className="hover:text-violet-500 text-xs px-2 py-1"
+                  onClick={() => onAddExtra(card)}
+                >
+                  Extra
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
