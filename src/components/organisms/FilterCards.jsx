@@ -19,16 +19,17 @@ function FilterCards({
   return (
     <div>
       {/* 🔍 Input ricerca */}
+
       <Input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Cerca una carta..."
-        className="w-full mt-2 p-2 border rounded mb-4 border-blue-900 text-blue-700 text-center"
+        className=" flex column items-center w-[80%] p-2 border rounded my-4 mx-auto border-blue-900 text-blue-700 text-center "
       />
 
       {/* 🃏 Risultati */}
       {cards.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-6 mx-2">
           {cards.map((card) => (
             <div
               key={card.id}
