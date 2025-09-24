@@ -45,13 +45,18 @@ function Decklist() {
 
   // Ricerca carte
   useEffect(() => {
-    if (!query) return setSearchResults([]);
-    setLoading(true);
-    fetch(`${API_URL}?fname=${query}`)
-      .then((res) => res.json())
-      .then((data) => setSearchResults(data.data))
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+    if (query.trim() === "") return setSearchResults([]);
+
+    const delayDebounce = setTimeout(() => {
+      setLoading(true);
+      fetch(`${API_URL}?fname=${query}`)
+        .then((res) => res.json())
+        .then((data) => setSearchResults(data.data || []))
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
+    }, 400); // aspetta 400ms dopo l'ultimo tasto
+
+    return () => clearTimeout(delayDebounce); // pulisce il timeout se digiti ancora
   }, [query]);
 
   return (
