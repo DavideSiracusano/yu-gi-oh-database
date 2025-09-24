@@ -39,16 +39,16 @@ function FilterCards({
               <p className="font-bold">{card.name}</p>
 
               {card.card_images?.[0] && (
-                <div className="relative">
+                <div>
                   <CardImage
                     src={card.card_images[0].image_url}
                     alt={card.name}
-                    className="w-[120px] h-auto mt-2 mb-2 hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer"
+                    className=" w-[120px] h-auto mt-2 mb-2 hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer"
                   />
 
                   {/* Tooltip posizionato accanto all'immagine */}
                   {hoveredCard?.id === card.id && (
-                    <div className="absolute inset-0 flex items-center justify-center z-50  ">
+                    <div className="absolute bottom-10 right-1 z-50">
                       <CardTooltip
                         card={card}
                         isVisible={true}

@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Main from "@/components/Main";
 import Footer from "@/components/Footer";
 import DarkTheme from "@/components/organisms/DarkTheme";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
         <DarkTheme />
         <Main>{children}</Main>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 "use client";
+import toast from "react-hot-toast";
 
 export function getDeck() {
   const saved = localStorage.getItem("userDeck");
@@ -19,9 +20,16 @@ export function getExtraDeck() {
 export function addCard(card) {
   const deck = getDeck();
   const count = deck.filter((c) => c.id === card.id).length;
-  if (count >= 3 || deck.length >= 60) return deck;
+  if (count >= 3 || deck.length >= 60) {
+    toast.error("Limite massimo raggiunto per il Main Deck!");
+    return deck;
+  }
   const newDeck = [...deck, card];
   localStorage.setItem("userDeck", JSON.stringify(newDeck));
+
+  // Toast di conferma aggiunta
+  toast.success("Carta aggiunta al Main Deck!");
+
   return newDeck;
 }
 
@@ -29,9 +37,15 @@ export function addCard(card) {
 export function addSideboard(card) {
   const deck = getSideboard();
   const count = deck.filter((c) => c.id === card.id).length;
-  if (count >= 3 || deck.length >= 15) return deck;
+  if (count >= 3 || deck.length >= 15) {
+    toast.error("Limite massimo raggiunto per il Side Deck!");
+    return deck;
+  }
   const newDeck = [...deck, card];
-  localStorage.setItem("userSideboard", JSON.stringify(newDeck)); // <--- corretto
+  localStorage.setItem("userSideboard", JSON.stringify(newDeck));
+
+  // Toast di conferma aggiunta
+  toast.success("Carta aggiunta al Side Deck!");
   return newDeck;
 }
 
@@ -39,9 +53,15 @@ export function addSideboard(card) {
 export function addExtraDeck(card) {
   const deck = getExtraDeck();
   const count = deck.filter((c) => c.id === card.id).length;
-  if (count >= 3 || deck.length >= 15) return deck;
+  if (count >= 3 || deck.length >= 15) {
+    toast.error("Limite massimo raggiunto per l'Extra Deck!");
+    return deck;
+  }
   const newDeck = [...deck, card];
-  localStorage.setItem("userExtraDeck", JSON.stringify(newDeck)); // <--- corretto
+  localStorage.setItem("userExtraDeck", JSON.stringify(newDeck));
+
+  // Toast di conferma aggiunta
+  toast.success("Carta aggiunta all'Extra Deck!");
   return newDeck;
 }
 
@@ -51,6 +71,9 @@ export function removeCard(cardId) {
   const index = deck.findIndex((c) => c.id === cardId);
   if (index !== -1) deck.splice(index, 1);
   localStorage.setItem("userDeck", JSON.stringify(deck));
+
+  // Toast di conferma rimozione
+  toast.success("Carta rimossa dal Main Deck!");
   return deck;
 }
 
@@ -60,6 +83,9 @@ export function removeSideboard(cardId) {
   const index = deck.findIndex((c) => c.id === cardId);
   if (index !== -1) deck.splice(index, 1);
   localStorage.setItem("userSideboard", JSON.stringify(deck));
+
+  // Toast di conferma rimozione
+  toast.success("Carta rimossa dal Side Deck!");
   return deck;
 }
 
@@ -69,5 +95,8 @@ export function removeExtraDeck(cardId) {
   const index = deck.findIndex((c) => c.id === cardId);
   if (index !== -1) deck.splice(index, 1);
   localStorage.setItem("userExtraDeck", JSON.stringify(deck));
+
+  // Toast di conferma rimozione
+  toast.success("Carta rimossa dall'Extra Deck!");
   return deck;
 }

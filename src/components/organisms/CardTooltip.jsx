@@ -7,7 +7,7 @@ function CardTooltip({ card, isVisible, setHoveredCard }) {
   return (
     // div hover che racchiude informazioni
     <div
-      className="absolute z-50 bg-gray-900 text-white p-4 rounded-lg shadow-xl border border-gray-700 min-w-[300px] max-w-[400px]"
+      className="bg-gray-900 text-white p-4 rounded-lg shadow-xl border border-gray-700 min-w-[300px] max-w-[300px]"
       onMouseEnter={() => setHoveredCard(card)}
       onMouseLeave={() => setHoveredCard(null)}
     >
