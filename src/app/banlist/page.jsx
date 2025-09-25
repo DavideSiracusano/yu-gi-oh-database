@@ -24,6 +24,7 @@ function Banlist() {
 
   return (
     <div className="p-4 ">
+      {/* Bottoni TCG / OCG */}
       <div className="flex justify-center gap-2 mb-4">
         <Button
           className="p-2 hover:bg-blue-600 hover:text-white rounded"
@@ -39,16 +40,23 @@ function Banlist() {
         </Button>
       </div>
 
+      {/* Skeleton daisyUI durante il caricamento */}
       {loading ? (
-        <div className="flex justify-center items-center h-40">
-          <span className="loading loading-ring loading-xs"></span>
-          <span className="loading loading-ring loading-sm"></span>
-          <span className="loading loading-ring loading-md"></span>
-          <span className="loading loading-ring loading-lg"></span>
-          <span className="loading loading-ring loading-xl"></span>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="cards bg-gray-100 p-3 rounded shadow flex flex-col items-center"
+            >
+              <div className="skeleton h-32 w-36 mb-2 bg-gray-200"></div>
+              <div className="skeleton h-4 w-24 mb-1 bg-gray-200"></div>
+              <div className="skeleton h-4 w-32 mt-2 bg-gray-200"></div>
+            </div>
+          ))}
         </div>
       ) : (
-        <div className="grid  sm:grid-cols-2 md:grid-cols-3  gap-4">
+        // Lista banlist
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {banlist.map((card) => (
             <div
               key={card.id}

@@ -5,7 +5,7 @@ import CardImage from "../atoms/CardImage";
 import Button from "../atoms/Button";
 import CardTooltip from "./CardTooltip";
 
-function CardResults({ cards, onAddDeck, onAddSide, onAddExtra, loading }) {
+function CardResults({ cards, onAddDeck, onAddSide, onAddExtra }) {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
@@ -22,27 +22,23 @@ function CardResults({ cards, onAddDeck, onAddSide, onAddExtra, loading }) {
             >
               <p className="font-bold">{card.name}</p>
 
-              {loading ? (
-                <div className="skeleton bg-gray-200 h-32 w-32"></div>
-              ) : (
-                card.card_images?.[0] && (
-                  <div>
-                    <CardImage
-                      src={card.card_images[0].image_url}
-                      alt={card.name}
-                      className="w-[120px] h-auto mt-2 mb-2 hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer"
-                    />
-                  </div>
-                )
-              )}
-
-              {hoveredCard?.id === card.id && (
-                <div className="absolute bottom-10 right-1 z-50">
-                  <CardTooltip
-                    card={card}
-                    isVisible={true}
-                    setHoveredCard={setHoveredCard}
+              {card.card_images?.[0] && (
+                <div>
+                  <CardImage
+                    src={card.card_images[0].image_url}
+                    alt={card.name}
+                    className="w-[120px] h-auto mt-2 mb-2 hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer"
                   />
+
+                  {hoveredCard?.id === card.id && (
+                    <div className="absolute bottom-10 right-1 z-50">
+                      <CardTooltip
+                        card={card}
+                        isVisible={true}
+                        setHoveredCard={setHoveredCard}
+                      />
+                    </div>
+                  )}
                 </div>
               )}
 

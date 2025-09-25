@@ -70,17 +70,6 @@ function AllCards() {
     setPage(1);
   }, [selectedType]);
 
-  if (loading)
-    return (
-      <div className="flex justify-center items-center h-40">
-        <span className="loading loading-ring loading-xs"></span>
-        <span className="loading loading-ring loading-sm"></span>
-        <span className="loading loading-ring loading-md"></span>
-        <span className="loading loading-ring loading-lg"></span>
-        <span className="loading loading-ring loading-xl"></span>
-      </div>
-    );
-
   // Carte da mostrare in base a query
   const cardsToShow = query ? results : allCards;
 
@@ -120,10 +109,31 @@ function AllCards() {
         onAddDeck={handleAddDeck}
         onAddSide={handleAddSide}
         onAddExtra={handleAddExtra}
+        loading={loading}
       />
 
+      {/* Skeleton carte in caricamento */}
+      {loading && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-6 mx-8">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className="border p-2 rounded shadow flex flex-col items-center"
+            >
+              <div className="skeleton h-32 w-32 mb-2 bg-gray-200"></div>
+              <div className="skeleton h-4 w-20 mb-2 bg-gray-200"></div>
+              <div className="flex gap-2 flex-wrap justify-center mt-2">
+                <div className="skeleton h-6 w-16 rounded bg-gray-200"></div>
+                <div className="skeleton h-6 w-16 rounded bg-gray-200"></div>
+                <div className="skeleton h-6 w-16 rounded bg-gray-200"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Mostra FilterCards solo se non c'è un tipo selezionato */}
-      {!selectedType && (
+      {!selectedType && !loading && (
         <FilterCards
           query={query}
           setQuery={setQuery}
@@ -131,19 +141,20 @@ function AllCards() {
           onAddDeck={handleAddDeck}
           onAddSide={handleAddSide}
           onAddExtra={handleAddExtra}
+          loading={loading}
         />
       )}
 
       {/* Info sui risultati - solo quando non c'è filtro tipo */}
-      {!selectedType && (
+      {!selectedType && !loading && (
         <div className="text-center text-gray-600 mb-4">
           Mostrando {currentCards.length} di {cardsToShow.length} carte
           {query && <span> (Ricerca: {query})</span>}
         </div>
       )}
 
-      {/* Paginazione per AllCards (quando non c'è filtro tipo) */}
-      {!selectedType && cardsToShow.length > perPage && (
+      {/* Paginazione per AllCards */}
+      {!selectedType && !loading && cardsToShow.length > perPage && (
         <div className="flex justify-center gap-2 mt-4">
           <Button
             disabled={page === 1}

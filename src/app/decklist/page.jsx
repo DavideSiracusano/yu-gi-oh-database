@@ -83,12 +83,15 @@ function Decklist() {
               <p className="font-bold text-sm text-center mb-2 line-clamp-2">
                 {card.name}
               </p>
-              {card.card_images?.[0] && (
+              {card.card_images?.[0] ? (
                 <CardImage
                   src={card.card_images[0].image_url}
                   alt={card.name}
                   className="w-30  mx-auto"
                 />
+              ) : (
+                // Skeleton immagine singola se non c'è immagine
+                <div className="skeleton h-32 w-32 mx-auto"></div>
               )}
               <Button
                 className="text-xs w-full px-2 py-1 hover:text-red-600 transition-colors"
@@ -113,19 +116,35 @@ function Decklist() {
         onAddDeck={handleAddCard}
         onAddSide={handleAddSide}
         onAddExtra={handleAddExtra}
+        loading={loading} // ← passa loading
       />
 
-      {/* Indicatore loading */}
-      {loading && (
-        <div className="text-center py-4">
-          <p className="text-gray-500">Caricamento...</p>
+      {/* Skeleton di ricerca */}
+      {loading && searchResults.length === 0 && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 my-6 mx-8">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center border p-2 rounded shadow"
+            >
+              {/* Skeleton immagine */}
+              <div className="skeleton h-32 w-32 mb-2 bg-gray-200"></div>
+              {/* Skeleton nome */}
+              <div className="skeleton h-4 w-20 mb-2 bg-gray-200"></div>
+              {/* Skeleton bottoni */}
+              <div className="flex gap-2 flex-wrap justify-center mt-2">
+                <div className="skeleton h-6 w-16 rounded bg-gray-200"></div>
+                <div className="skeleton h-6 w-16 rounded bg-gray-200"></div>
+                <div className="skeleton h-6 w-16 rounded bg-gray-200"></div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
 
       {/* Sezioni dei deck */}
 
       {/* Main Deck */}
-
       <DeckSection
         title="Main Deck"
         cards={deck}
@@ -135,7 +154,6 @@ function Decklist() {
       />
 
       {/* Side Deck */}
-
       <DeckSection
         title="Side Deck"
         cards={side}
@@ -144,7 +162,6 @@ function Decklist() {
       />
 
       {/* Extra Deck */}
-
       <DeckSection
         title="Extra Deck"
         cards={extra}

@@ -12,8 +12,6 @@ function FilterCards({
   onAddSide,
   onAddExtra,
 }) {
-  const [hoveredCard, setHoveredCard] = useState(null);
-
   return (
     <div>
       {/* 🔍 Input ricerca */}
