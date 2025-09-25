@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Input from "../atoms/Input";
 import CardResults from "./CardResults";
 
@@ -12,13 +9,15 @@ function FilterCards({
   onAddSide,
   onAddExtra,
 }) {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL_NAME;
+
   return (
     <div>
       {/* 🔍 Input ricerca */}
 
       <Input
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => setQuery(`${e.target.value}`)}
         placeholder="Cerca una carta..."
         className=" flex column items-center w-[80%] p-2 border rounded my-4 mx-auto border-blue-900 text-blue-700 text-center "
       />

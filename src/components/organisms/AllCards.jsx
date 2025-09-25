@@ -15,6 +15,7 @@ import Button from "../atoms/Button";
 
 function AllCards() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL_NAME = process.env.NEXT_PUBLIC_API_URL_NAME;
 
   const [allCards, setAllCards] = useState([]);
   const [query, setQuery] = useState("");
@@ -57,7 +58,7 @@ function AllCards() {
       return;
     }
 
-    fetch(`${API_URL}?fname=${query}`)
+    fetch(`${API_URL_NAME}${query}`)
       .then((res) => res.json())
       .then((data) => {
         setResults(data.data || []);
