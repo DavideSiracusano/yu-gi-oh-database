@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import API_URL from "@/ApiKey";
 import CardResults from "./CardResults";
 
 function SelectCards({ selectedType, setSelectedType }) {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const [cards, setCards] = useState([]);
   const [page, setPage] = useState(1);
   const perPage = 20;

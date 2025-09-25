@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import API_URL from "@/ApiKey";
 import Button from "@/components/atoms/Button";
 
 function Banlist() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const [banlist, setBanlist] = useState([]);
   const [query, setQuery] = useState("tcg"); // default a tcg
   const [loading, setLoading] = useState(false);

@@ -15,9 +15,10 @@ import {
 import FilterCards from "@/components/organisms/FilterCards";
 import CardImage from "@/components/atoms/CardImage";
 import Button from "@/components/atoms/Button";
-import API_URL from "@/ApiKey";
 
 function Decklist() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [deck, setDeck] = useState([]);

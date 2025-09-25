@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useState, useEffect } from "react";
+import Button from "../atoms/Button";
 
 function DarkTheme() {
   const [theme, setTheme] = useState(false);
@@ -16,7 +17,7 @@ function DarkTheme() {
 
   return (
     <div className="absolute top-4 right-4">
-      <button onClick={() => setTheme(!theme)}> {theme ? "🌞 " : "🌛"}</button>
+      <Button onClick={() => setTheme(!theme)}> {theme ? "🌞 " : "🌛"}</Button>
     </div>
   );
 }

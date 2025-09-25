@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import API_URL from "@/ApiKey";
 import FilterCards from "./FilterCards";
 import {
   addCard,
@@ -12,8 +11,11 @@ import {
   getExtraDeck,
 } from "@/components/organisms/HandleDeck";
 import SelectCards from "./SelectCards";
+import Button from "../atoms/Button";
 
 function AllCards() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const [allCards, setAllCards] = useState([]);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -140,23 +142,23 @@ function AllCards() {
       {/* Paginazione per AllCards (quando non c'è filtro tipo) */}
       {!selectedType && cardsToShow.length > perPage && (
         <div className="flex justify-center gap-2 mt-4">
-          <button
+          <Button
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
             className="px-3 py-1 bg-blue-500 text-white rounded disabled:bg-gray-300"
           >
             Prev
-          </button>
+          </Button>
           <span className="px-3 py-1">
             {page} / {totalPages}
           </span>
-          <button
+          <Button
             disabled={page === totalPages}
             onClick={() => setPage(page + 1)}
             className="px-3 py-1 bg-blue-500 text-white rounded disabled:bg-gray-300"
           >
             Next
-          </button>
+          </Button>
         </div>
       )}
     </div>
