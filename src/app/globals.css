@@ -40,6 +40,8 @@ body {
     #ff0000
   );
 
+  /* Dimensione gradient rispetto al testo */
+
   background-size: 200% 200%;
 
   /* Testo trasparente per mostrare gradient */
