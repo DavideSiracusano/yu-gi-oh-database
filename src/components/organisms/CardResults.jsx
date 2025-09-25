@@ -5,9 +5,8 @@ import CardImage from "../atoms/CardImage";
 import Button from "../atoms/Button";
 import CardTooltip from "./CardTooltip";
 
-function CardResults({ cards, onAddDeck, onAddSide, onAddExtra }) {
+function CardResults({ cards, onAddDeck, onAddSide, onAddExtra, loading }) {
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   return (
     <div>
