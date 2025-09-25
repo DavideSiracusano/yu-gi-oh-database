@@ -1,8 +1,20 @@
+"use client";
 import React from "react";
 import CardImage from "../atoms/CardImage";
+import { useState, useEffect } from "react";
+import Button from "../atoms/Button";
 
 function CardTooltip({ card, isVisible, setHoveredCard }) {
   if (!isVisible || !card) return null;
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     // div hover che racchiude informazioni
@@ -11,6 +23,15 @@ function CardTooltip({ card, isVisible, setHoveredCard }) {
       onMouseEnter={() => setHoveredCard(card)}
       onMouseLeave={() => setHoveredCard(null)}
     >
+      {isMobile && (
+        <Button
+          className="absolute top-2 right-2 w-8 h-auto bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white text-sm font-bold transition-colors duration-200 z-10"
+          aria-label="Chiudi il tooltip"
+          onClick={() => setHoveredCard(null)}
+        >
+          x
+        </Button>
+      )}
       <div className="space-y-2 text-sm">
         <div className="font-bold text-lg text-yellow-400 text-center">
           {card.name}
