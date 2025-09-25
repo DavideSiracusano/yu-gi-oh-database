@@ -16,7 +16,7 @@ function CardResults({ cards, onAddDeck, onAddSide, onAddExtra }) {
           {cards.map((card) => (
             <div
               key={card.id}
-              className="border p-2 rounded shadow flex flex-col items-center relative"
+              className="border p-2 rounded shadow flex flex-col text-center relative text-[12px] "
               onMouseEnter={() => setHoveredCard(card)}
               onMouseLeave={() => setHoveredCard(null)}
             >
@@ -27,7 +27,7 @@ function CardResults({ cards, onAddDeck, onAddSide, onAddExtra }) {
                   <CardImage
                     src={card.card_images[0].image_url}
                     alt={card.name}
-                    className="w-[120px] h-auto mt-2 mb-2 hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer"
+                    className="w-[150px] h-auto mt-2 mb-2 mx-auto"
                   />
 
                   <p className="text-center text-sm text-green-400">

@@ -13,7 +13,7 @@ function Banlist() {
   useEffect(() => {
     if (!query) return;
     setLoading(true);
-    fetch(`${API_URL}?banlist=${query}`)
+    fetch(`${API_URL}&banlist=${query}`)
       .then((res) => res.json())
       .then((data) => {
         setBanlist(data.data);

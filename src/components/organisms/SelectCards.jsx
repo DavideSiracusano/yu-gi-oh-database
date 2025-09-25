@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import CardResults from "./CardResults";
+import Button from "../atoms/Button";
 
 function SelectCards({
   selectedType,
@@ -16,9 +17,14 @@ function SelectCards({
   const [page, setPage] = useState(1);
   const perPage = 20;
 
+  // numero totale di pagine
   const totalPages = Math.ceil(cards.length / perPage);
+
+  // Calcola gli indici di inizio e fine per la pagina corrente
   const startIndex = (page - 1) * perPage;
   const endIndex = startIndex + perPage;
+
+  // Ottiene le carte per la pagina corrente
   const currentCards = cards.slice(startIndex, endIndex);
 
   useEffect(() => {
@@ -32,10 +38,10 @@ function SelectCards({
     let url = API_URL;
     if (selectedType === "Effect Monster") {
       // Fetch tutti i mostri con effetto
-      url += "?has_effect=1";
+      url += "&has_effect=1";
     } else {
       // Fetch per tipo preciso (Spell Card, Trap Card, Normal Monster, ecc.)
-      url += `?type=${encodeURIComponent(selectedType)}`;
+      url += `&type=${encodeURIComponent(selectedType)}`;
     }
 
     fetch(url)
@@ -92,25 +98,28 @@ function SelectCards({
             onAddExtra={onAddExtra}
           />
 
+          {/* Paginazione */}
           {cards.length > 0 && totalPages > 1 && (
             <div className="flex justify-center gap-2 mt-4">
-              <button
+              <Button
                 disabled={page === 1}
                 onClick={() => setPage(page - 1)}
                 className="px-3 py-1 bg-blue-500 text-white rounded disabled:bg-gray-300"
               >
                 Prev
-              </button>
+              </Button>
+
+              {}
               <span className="px-3 py-1">
                 {page} / {totalPages}
               </span>
-              <button
+              <Button
                 disabled={page === totalPages}
                 onClick={() => setPage(page + 1)}
                 className="px-3 py-1 bg-blue-500 text-white rounded disabled:bg-gray-300"
               >
                 Next
-              </button>
+              </Button>
             </div>
           )}
         </>
