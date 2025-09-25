@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Main from "@/components/Main";
 import Footer from "@/components/Footer";
-import DarkTheme from "@/components/organisms/DarkTheme";
 import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
@@ -28,7 +27,6 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <DarkTheme />
         <Main>{children}</Main>
         <Footer />
         <Toaster />

@@ -117,6 +117,9 @@ function AllCards() {
       <SelectCards
         selectedType={selectedType}
         setSelectedType={setSelectedType}
+        onAddDeck={handleAddDeck}
+        onAddSide={handleAddSide}
+        onAddExtra={handleAddExtra}
       />
 
       {/* Mostra FilterCards solo se non c'è un tipo selezionato */}

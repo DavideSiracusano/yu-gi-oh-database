@@ -2,7 +2,13 @@
 import React, { useState, useEffect } from "react";
 import CardResults from "./CardResults";
 
-function SelectCards({ selectedType, setSelectedType }) {
+function SelectCards({
+  selectedType,
+  setSelectedType,
+  onAddDeck,
+  onAddSide,
+  onAddExtra,
+}) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [cards, setCards] = useState([]);
@@ -78,7 +84,12 @@ function SelectCards({ selectedType, setSelectedType }) {
             <strong>{selectedType}</strong>
           </div>
 
-          <CardResults cards={currentCards} />
+          <CardResults
+            cards={currentCards}
+            onAddDeck={onAddDeck}
+            onAddSide={onAddSide}
+            onAddExtra={onAddExtra}
+          />
 
           {cards.length > 0 && totalPages > 1 && (
             <div className="flex justify-center gap-2 mt-4">
