@@ -11,6 +11,7 @@ import {
   addExtraDeck,
   getExtraDeck,
 } from "@/components/organisms/HandleDeck";
+import SelectCards from "./SelectCards";
 
 function AllCards() {
   const [allCards, setAllCards] = useState([]);
@@ -19,6 +20,9 @@ function AllCards() {
   const [page, setPage] = useState(1); // pagina corrente
   const [perPage] = useState(20); // carte per pagina
   const [loading, setLoading] = useState(true);
+
+  // AGGIUNGI QUESTO STATO - era mancante!
+  const [selectedType, setSelectedType] = useState("");
 
   // stati deck
   const [deck, setDeck] = useState([]);
@@ -59,7 +63,21 @@ function AllCards() {
       .catch((err) => console.log(err));
   }, [query]);
 
-  if (loading) return <p className="text-center">Loading...✋🏻</p>;
+  // Reset pagina quando cambia il tipo selezionato
+  useEffect(() => {
+    setPage(1);
+  }, [selectedType]);
+
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-40">
+        <span className="loading loading-ring loading-xs"></span>
+        <span className="loading loading-ring loading-sm"></span>
+        <span className="loading loading-ring loading-md"></span>
+        <span className="loading loading-ring loading-lg"></span>
+        <span className="loading loading-ring loading-xl"></span>
+      </div>
+    );
 
   // Carte da mostrare in base a query
   const cardsToShow = query ? results : allCards;
@@ -76,7 +94,6 @@ function AllCards() {
   // carte da mostrare
   const currentCards = cardsToShow.slice(startIndex, endIndex);
 
-  // handler per aggiungere carte
   // handler per aggiungere carte
   const handleAddDeck = (card) => {
     addCard(card); // salva su localStorage
@@ -95,17 +112,33 @@ function AllCards() {
 
   return (
     <div>
-      <FilterCards
-        query={query}
-        setQuery={setQuery}
-        cards={currentCards}
-        onAddDeck={handleAddDeck}
-        onAddSide={handleAddSide}
-        onAddExtra={handleAddExtra}
+      <SelectCards
+        selectedType={selectedType}
+        setSelectedType={setSelectedType}
       />
 
-      {/* Paginazione */}
-      {cardsToShow.length > perPage && (
+      {/* Mostra FilterCards solo se non c'è un tipo selezionato */}
+      {!selectedType && (
+        <FilterCards
+          query={query}
+          setQuery={setQuery}
+          cards={currentCards}
+          onAddDeck={handleAddDeck}
+          onAddSide={handleAddSide}
+          onAddExtra={handleAddExtra}
+        />
+      )}
+
+      {/* Info sui risultati - solo quando non c'è filtro tipo */}
+      {!selectedType && (
+        <div className="text-center text-gray-600 mb-4">
+          Mostrando {currentCards.length} di {cardsToShow.length} carte
+          {query && <span> (Ricerca: {query})</span>}
+        </div>
+      )}
+
+      {/* Paginazione per AllCards (quando non c'è filtro tipo) */}
+      {!selectedType && cardsToShow.length > perPage && (
         <div className="flex justify-center gap-2 mt-4">
           <button
             disabled={page === 1}

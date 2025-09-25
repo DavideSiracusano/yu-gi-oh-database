@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 /* Tema chiaro di default */
 body {
@@ -9,7 +10,7 @@ body {
 
 /* Tema scuro */
 .dark body {
-  background: rgba(0, 0, 0, 0.854);
+  background: rgba(0, 0, 0, 0.598);
   color: white;
 }
 

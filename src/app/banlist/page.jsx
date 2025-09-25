@@ -39,7 +39,13 @@ function Banlist() {
       </div>
 
       {loading ? (
-        <p className="text-center">Caricamento...</p>
+        <div className="flex justify-center items-center h-40">
+          <span className="loading loading-ring loading-xs"></span>
+          <span className="loading loading-ring loading-sm"></span>
+          <span className="loading loading-ring loading-md"></span>
+          <span className="loading loading-ring loading-lg"></span>
+          <span className="loading loading-ring loading-xl"></span>
+        </div>
       ) : (
         <div className="grid  sm:grid-cols-2 md:grid-cols-3  gap-4">
           {banlist.map((card) => (
