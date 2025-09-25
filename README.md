@@ -23,6 +23,7 @@ Questo progetto è nato come **elaborato finale** del percorso **Formatemp**, in
 - [Next.js](https://nextjs.org/) — Framework React per app moderne
 - [React](https://react.dev/) — Libreria frontend
 - [Tailwind CSS](https://tailwindcss.com/) — Styling semplice e veloce
+- [Daisy UI](https://daisyui.com/) - Styling di alcuni componenti
 - **Local Storage** — per salvare i deck degli utenti
 - [API YGOProDeck](https://ygoprodeck.com/api-guide/) _(per i dati delle carte, se usata)_
 
