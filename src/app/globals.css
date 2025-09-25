@@ -55,6 +55,57 @@ body {
   animation: rainbow 5s ease infinite;
 }
 
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Tema chiaro di default */
+body {
+  background: white;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Tema scuro */
+.dark body {
+  background: rgba(0, 0, 0, 0.598);
+  color: white;
+}
+
+.dark li {
+  background: gray;
+  color: white;
+}
+
+.dark .link-home,
+.dark .link-decklist,
+.dark .link-banlist,
+.dark .link-about {
+  background: transparent;
+  color: white;
+}
+
+/* Testo arcobaleno */
+.rainbow-text,
+.aboutText {
+  background: linear-gradient(
+    270deg,
+    #ff0000,
+    #ff9900,
+    #ffff00,
+    #00ff00,
+    #00ffff,
+    #0000ff,
+    #ff00ff,
+    #ff0000
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow 5s ease infinite;
+}
+
 @keyframes rainbow {
   0% {
     background-position: 0% 50%;
@@ -64,5 +115,48 @@ body {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+/* Background animato per About Page */
+.aboutPage {
+  /* Due animazioni sovrapposte per maggiore fluidità */
+  animation: color-change-fast 3s linear infinite alternate,
+    color-change-slow 6s linear infinite alternate;
+}
+
+@keyframes color-change-fast {
+  0% {
+    background: #1e1e2f;
+  }
+  25% {
+    background: #2c2c54;
+  }
+  50% {
+    background: #3b3b76;
+  }
+  75% {
+    background: #1f1f2e;
+  }
+  100% {
+    background: #1e1e2f;
+  }
+}
+
+@keyframes color-change-slow {
+  0% {
+    background: #2a1a4c;
+  }
+  25% {
+    background: #1f1f2e;
+  }
+  50% {
+    background: #3b2a6b;
+  }
+  75% {
+    background: #2c2c54;
+  }
+  100% {
+    background: #2a1a4c;
   }
 }

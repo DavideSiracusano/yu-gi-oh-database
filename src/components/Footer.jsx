@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="position-fixed bottom-0 bg-gray-800 text-white text-center p-4 mt-8">
+    <footer className="position-fixed bottom-0 bg-gray-800 text-white text-center p-4">
       <p>
         &copy; {new Date().getFullYear()} Yu-Gi-Oh Database. Tutti i diritti
         riservati.
