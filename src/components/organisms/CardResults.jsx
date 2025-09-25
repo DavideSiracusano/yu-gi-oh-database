@@ -30,6 +30,10 @@ function CardResults({ cards, onAddDeck, onAddSide, onAddExtra }) {
                     className="w-[120px] h-auto mt-2 mb-2 hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer"
                   />
 
+                  <p className="text-center text-sm text-green-400">
+                    {`$${card.card_prices[0].cardmarket_price}`}
+                  </p>
+
                   {hoveredCard?.id === card.id && (
                     <div className="absolute bottom-10 right-1 z-50">
                       <CardTooltip
