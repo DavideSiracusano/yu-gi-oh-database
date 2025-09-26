@@ -14,68 +14,18 @@ body {
   color: white;
 }
 
+/* Evita sfondo grigio sui li in dark mode */
 .dark li {
-  background: gray;
-  color: white;
-}
-
-.dark .link-home,
-.dark .link-decklist,
-.dark .link-banlist,
-.dark .link-about {
   background: transparent;
   color: white;
 }
 
-.rainbow-text {
-  /* Gradient colorato */
-  background: linear-gradient(
-    270deg,
-    #ff0000,
-    #ff9900,
-    #ffff00,
-    #00ff00,
-    #00ffff,
-    #0000ff,
-    #ff00ff,
-    #ff0000
-  );
-
-  /* Dimensione gradient rispetto al testo */
-
-  background-size: 200% 200%;
-
-  /* Testo trasparente per mostrare gradient */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-
-  /* Animazione gradient */
-  animation: rainbow 5s ease infinite;
+.dark .buttonClose {
+  background: transparent;
+  color: #b91c1c;
 }
 
-@import "tailwindcss";
-@plugin "daisyui";
-
-/* Tema chiaro di default */
-body {
-  background: white;
-  color: black;
-  transition: background 0.3s, color 0.3s;
-}
-
-/* Tema scuro */
-.dark body {
-  background: rgba(0, 0, 0, 0.598);
-  color: white;
-}
-
-.dark li {
-  background: gray;
-  color: white;
-}
-
+/* Link specifici navbar */
 .dark .link-home,
 .dark .link-decklist,
 .dark .link-banlist,
@@ -120,7 +70,6 @@ body {
 
 /* Background animato per About Page */
 .aboutPage {
-  /* Due animazioni sovrapposte per maggiore fluidità */
   animation: color-change-fast 3s linear infinite alternate,
     color-change-slow 6s linear infinite alternate;
 }
