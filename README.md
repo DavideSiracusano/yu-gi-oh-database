@@ -33,36 +33,41 @@ Questo progetto è nato come **elaborato finale** del percorso **Formatemp**, in
 
 Clona il repository:
 
-```bash
+```
 git clone https://github.com/DavideSiracusano/yu-gi-oh-database.git
 cd yu-gi-oh-database
+```
 
 Installa le dipendenze:
 
+```
 npm install
-
+```
 
 Avvia il server di sviluppo:
 
+```
 npm run dev
-
+```
 
 Apri il browser su 👉 http://localhost:3000
- e inizia a esplorare!
+e inizia a esplorare!
 
 📂 Struttura del progetto
-yu-gi-oh-database/
- ├── src/           # componenti, pagine e logica dell’app
- ├── public/        # asset statici (icone, immagini)
- ├── package.json   # dipendenze e script
- ├── next.config.mjs
- └── README.md
 
- 👨‍💻 Autore
+```
+yu-gi-oh-database/
+├── src/ # componenti, pagine e logica dell’app
+├── public/ # asset statici (icone, immagini)
+├── package.json # dipendenze e script
+├── next.config.mjs
+└── README.md
+```
+
+👨‍💻 Autore
 
 Davide Siracusano
 📌 GitHub
 
 ⭐ Se ti piace questo progetto, lascia una star su GitHub!
 Divertiti a creare il tuo deck e esplorare le carte di Yu-Gi-Oh! 🎴🔥
-```
