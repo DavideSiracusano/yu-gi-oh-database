@@ -34,6 +34,11 @@ body {
   color: white;
 }
 
+.dark .cards {
+  background: gray;
+  color: white;
+}
+
 /* Testo arcobaleno */
 .rainbow-text,
 .aboutText {

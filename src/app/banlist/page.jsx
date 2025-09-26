@@ -62,7 +62,7 @@ function Banlist() {
               key={card.id}
               className="cards bg-gray-100 p-3 rounded shadow flex flex-col items-center"
             >
-              <p className="font-bold">{card.name}</p>
+              <p className="font-bold ">{card.name}</p>
               {card.card_images?.[0] && (
                 <img
                   src={card.card_images[0].image_url}
