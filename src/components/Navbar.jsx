@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import DarkTheme from "./organisms/DarkTheme";
 
@@ -12,7 +11,7 @@ function Navbar() {
 
   return (
     <nav className="p-4 sm:p-20 shadow-md bg-[url('/header.png')] bg-cover bg-center">
-      {/* Desktop menu */}
+      {/* Desktop menu, nascosto per schermi piccoli */}
       <ul className="hidden lg:flex lg:justify-center lg:gap-6">
         {links.map((link) => (
           <li key={link.name}>
@@ -24,57 +23,56 @@ function Navbar() {
         <DarkTheme />
       </ul>
 
-      {/* Mobile menu */}
+      {/* Mobile menu con Drawer DaisyUI */}
       <div className="lg:hidden">
         <div className="drawer">
-          <input id="mobile-menu" type="checkbox" className="drawer-toggle" />
-
-          {/* Hamburger */}
-          <div className="drawer-content flex justify-center items-center">
+          <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-content ">
+            {/* hamburger */}
             <label
-              htmlFor="mobile-menu"
-              className="btn btn-circle swap swap-rotate"
+              htmlFor="my-drawer"
+              className="btn btn-circle bg-black/50 border-none text-white"
             >
               <svg
-                className="swap-off fill-current"
                 xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 512 512"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="inline-block w-6 h-6 stroke-current"
               >
-                <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
-              </svg>
-              <svg
-                className="swap-on fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 512 512"
-              >
-                <polygon points="400,145.49 366.51,112 256,222.51 145.49,112 112,145.49 222.51,256 112,366.51 145.49,400 256,289.49 366,400 400,366.51 289.49,256 400,145.49" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
               </svg>
             </label>
           </div>
 
-          {/* Drawer side */}
           <div className="drawer-side">
-            <label htmlFor="mobile-menu" className="drawer-overlay"></label>
-            <div className="menu min-h-full w-80 bg-black/80 backdrop-blur-md p-4">
-              <DarkTheme />
-              <ul className="flex flex-col items-center gap-4 pt-8">
-                <li className="buttonClose text-red-700">
-                  <label htmlFor="mobile-menu">x</label>
-                </li>
+            <label
+              htmlFor="my-drawer"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <div className="relative w-64 min-h-full bg-black/100 text-white p-4">
+              {/* Bottone X per chiudere */}
+              <label
+                htmlFor="my-drawer"
+                className="btn btn-sm btn-circle absolute right-4 top-4 text-white bg-red-600 border-none hover:bg-red-700"
+              >
+                ✕
+              </label>
+
+              <ul className="menu mt-20 mx-auto">
                 {links.map((link) => (
                   <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-white hover:text-blue-500 justify-center"
-                    >
-                      {link.name}
-                    </Link>
+                    <Link href={link.href}>{link.name}</Link>
                   </li>
                 ))}
+                <li>
+                  <DarkTheme />
+                </li>
               </ul>
             </div>
           </div>
