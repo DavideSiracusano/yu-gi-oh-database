@@ -41,7 +41,9 @@ body {
 
 /* Testo arcobaleno */
 .rainbow-text,
-.aboutText {
+.aboutText,
+.dark .aboutText,
+.dark .rainbow-text {
   background: linear-gradient(
     270deg,
     #ff0000,
