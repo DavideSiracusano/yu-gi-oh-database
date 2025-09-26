@@ -3,14 +3,13 @@ import React from "react";
 function About() {
   return (
     <div className="aboutPage">
-      <div className="flex flex-col items-center px-8 py-20 space-y-8 w-full">
-        {/* Titolo principale */}
-        <h1 className="aboutText ext text-4xl font-bold mb-4 text-center">
-          About Yu-Gi-Oh Database
-        </h1>
-
+      {/* Titolo principale */}
+      <h1 className="aboutText text-4xl font-bold mb-4 text-center py-2">
+        About Yu-Gi-Oh Database
+      </h1>
+      <div className="flex flex-col items-center px-8 py-10 space-y-8 w-full">
         {/* Sezione introduzione */}
-        <div className="bg-white shadow-md rounded-lg p-6 text-center w-full max-w-5xl">
+        <div className="bg-white shadow-md rounded-lg p-6 text-center w-full max-w-5xl ">
           <p className="text-gray-700 mb-2">
             Questo progetto è stato realizzato come parte del corso di{" "}
             <strong>Front End Development</strong> offerto da{" "}
@@ -45,7 +44,7 @@ function About() {
         </div>
 
         {/* Sezione funzionalità principali */}
-        <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-5xl">
+        <div className="bg-white shadow-md rounded-lg p-12 w-full max-w-5xl">
           <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">
             Funzionalità principali
           </h2>
