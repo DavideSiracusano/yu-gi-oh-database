@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import CardImage from "../atoms/CardImage";
 import { useState, useEffect } from "react";
 import Button from "../atoms/Button";

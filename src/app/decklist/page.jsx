@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import {
   addCard,
@@ -17,7 +16,7 @@ import CardImage from "@/components/atoms/CardImage";
 import Button from "@/components/atoms/Button";
 
 function Decklist() {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL_NAME = process.env.NEXT_PUBLIC_API_URL_NAME;
 
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -49,7 +48,7 @@ function Decklist() {
 
     const delayDebounce = setTimeout(() => {
       setLoading(true);
-      fetch(`${API_URL}?fname=${query}`)
+      fetch(`${API_URL_NAME}${query}`)
         .then((res) => res.json())
         .then((data) => setSearchResults(data.data || []))
         .catch((err) => console.log(err))

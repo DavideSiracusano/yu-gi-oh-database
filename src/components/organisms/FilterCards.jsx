@@ -9,8 +9,6 @@ function FilterCards({
   onAddSide,
   onAddExtra,
 }) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL_NAME;
-
   return (
     <div>
       {/* 🔍 Input ricerca */}
