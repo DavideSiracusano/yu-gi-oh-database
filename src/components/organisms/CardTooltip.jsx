@@ -28,7 +28,7 @@ function CardTooltip({ card, isVisible, setHoveredCard }) {
           aria-label="Chiudi il tooltip"
           onClick={() => setHoveredCard(null)}
         >
-          x
+          <span className="mb-1">x</span>
         </Button>
       )}
       <div className="space-y-2 text-sm">
