@@ -6,6 +6,9 @@ Benvenuto nel **Yu-Gi-Oh! Database**, un’app creata con **Next.js** per tutti 
 
 Questo progetto è nato come **elaborato finale** del percorso **Formatemp**, in collaborazione con l’azienda **Riverloop**, con l’obiettivo di mettere in pratica competenze moderne di sviluppo web e creare un’app divertente e utile.
 
+# link:
+https://yu-gi-oh-database.vercel.app/
+
 ---
 
 ## ✨ Funzionalità principali
